@@ -1,0 +1,2 @@
+.container__grid{background:#dcdcdc;margin:0 auto;max-width:800px;display:grid;grid-template-columns:200px 200px 200px;grid-template-rows:1fr 1fr;justify-content:center;align-items:center}.box-button{grid-column-start:2;grid-column-end:2;grid-row-start:1;grid-row-end:3;display:flex;align-items:center}.App-header h1{margin:0 auto;max-width:450px;font-size:30px}.App-header{display:flex}.ClassActive{background:#c7c5c5;padding:10px}.page{text-decoration:none}
+/*# sourceMappingURL=main.9e894c54.chunk.css.map */
