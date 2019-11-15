@@ -1,26 +1,35 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { connect } from 'react-redux';
+import * as selectors from './redux/store';
+import Convert from './components/Convert';
+import { getApi } from './API_fromServer';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component { 
+  async componentDidMount() {
+    const valueMoney = await getApi()
+      this.props.loadDataValue(valueMoney);
+  }
+ 
+  render() {
+    return (
+      <div className="App">
+        <header className="App-header">
+          <Convert />
+        </header>
+      </div>
+    );
+  }
 }
 
-export default App;
+const mapStateToProps = state => ({
+  valueMoney: state.valueMoney,
+});
+
+const mapDispatchToProps = dispatch => ({
+  // enableLoading: () => dispatch(loadingAction.enableLoading()),
+  loadDataValue: valueMoney => dispatch(selectors.setDataMoney(valueMoney)),
+  // disableLoading: () => dispatch(loadingAction.disableLoading()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
